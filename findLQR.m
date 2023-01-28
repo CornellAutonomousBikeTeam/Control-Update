@@ -52,6 +52,9 @@ for t = t
 
 
     [success, state] = runBicycleTestR(x,y,v,delta0,phi0,phi_dot0,psi0,p,K,0,lag1, lag2,400, 0);  
+    if(success)
+        plotController(x,y,v,delta0,phi0,phi_dot0,psi0,p,K,0,lag1, lag2,400, 0);
+    end
     phi = state(:,4);
     delta = state(:,6);
     phidot = state(:,7);

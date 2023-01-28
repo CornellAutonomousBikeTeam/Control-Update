@@ -1,4 +1,4 @@
-function [success, allStates,stability] = runBicycleTestN(x0,y0,v0,delta0,phi0, ...
+function [success, allStates,stability] = runBicycleTestNonlinear(x0,y0,v0,delta0,phi0, ...
                 phi_dot0,psi0,p, Kb, Km, delta_offset,a, lag1,lag2, numTimeSteps,  graph)
 %see 2017 team function runBicycleTest for standard documentation; this is
 %an adaptation so that a controller nonlinear with respect to phi can be
@@ -84,19 +84,19 @@ u_init =0;
    currentState(1,2:end) = previousState(1,2:end) + zdot*timestep; %Euler integrate
    allStates(count,:) =  currentState; %record state
    motCommands(count) = u; %record motor commands
-  if(count>3)
-   [stability]= stable(currentState, delta_offset(count), phi_offset(count), previousState);
- if(stability)
-       stabled = count; 
+  %if(count>3)
+  % [stability]= stable(currentState, delta_offset(count), phi_offset(count), previousState);
+ %if(stability)
+ %      stabled = count; 
        %break;
- end
-  end
+ %end
+  %end
   change = change+1; 
  end
- if stabled < 0
-     success = 0;
-     fprintf("\n NOT STABLE");
- end 
+ %if stabled < 0
+ %    success = 0;
+ %    fprintf("\n NOT STABLE");
+ %end 
  stability = stabled;
   if graph == 1
      clf
